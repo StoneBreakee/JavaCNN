@@ -705,8 +705,11 @@ public class CNN implements Serializable {
 	 */
 	public void saveModel(String fileName) {
 		try {
+		    File file = new File(fileName);
+		    if(!file.exists())
+		        file.createNewFile();
 			ObjectOutputStream oos = new ObjectOutputStream(
-					new FileOutputStream(fileName));
+					new FileOutputStream(file));
 			oos.writeObject(this);
 			oos.flush();
 			oos.close();
